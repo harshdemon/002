@@ -9,11 +9,11 @@
 
 from pyrogram import filters
 
-from SaitamaRobot.Extra_plugs.pluginshelper import admins_only, get_text
+from SaitamaRobot.pyrogramee.pluginshelper import admins_only, get_text
 from SaitamaRobot import pgram
 
 
-@pgram.on_message(filters.command("tagall") & ~filters.edited & ~filters.bot)
+@pgram.on_message(filters.command("all") & ~filters.edited & ~filters.bot)
 @admins_only
 async def tagall(client, message):
     await message.reply("`Processing.....`")
@@ -32,5 +32,5 @@ async def tagall(client, message):
 
 __mod_name__ = "Tagall"
 __help__ = """
-- /tagall : Tag everyone in a chat
+- /all : Tag everyone in a chat
 """
