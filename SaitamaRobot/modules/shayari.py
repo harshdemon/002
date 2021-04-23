@@ -1,3 +1,4 @@
+#khud banaya hai kang karna hai toh credit de dena
 import random
 from telegram.ext import run_async, Filters
 from telegram import Message, Chat, Update, Bot, MessageEntity
