@@ -1,4 +1,4 @@
-SHAYARI_STRINGS = (
+SHAYARI = (
   "Har Tanha Raat Mein Ek Naam Yaad Aata Hai Kabhi Subhah To Kabhi Shaam Yaad Aata Hai,Jab Sochte Hain Kar Lein Dobara Mohabbat,Fir Pehli Mohabbat Ka Anzaam Yaad Aata Hai.",
   "Humein Shayar Samajh Ke Yoon Najar Andaz Mat Kariye,Najar Hum Fer Le To Husn Ka Baazar Gir Jayega.",
   "Humari Haisiyat Ka Andaza Tum Ye Jaan Ke Laga Lo,Hum Kabhi Unke Nahi Hote Jo Har Kisi Ke Ho Gaye.",
