@@ -24,7 +24,7 @@ def shayari(update, context):
         if update.effective_message.reply_to_message
         else update.effective_message.reply_text
     )
-    reply_text(random.choice(fun.SHAYARI_STRINGS))
+    reply_text(random.choice(shayari.SHAYARI_STRINGS))
 
 
 SHAYARI_HANDLER = DisableAbleCommandHandler("shayari", shayari)
