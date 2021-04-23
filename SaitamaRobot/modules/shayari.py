@@ -1,9 +1,20 @@
 #khud banaya hai kang karna hai toh credit de dena
+import html
 import random
-from telegram.ext import run_async, Filters
-from telegram import Message, Chat, Update, Bot, MessageEntity
+import time
+
+from typing import Optional
+from telegram import ParseMode, Update, ChatPermissions
+from telegram.ext import CallbackContext, run_async
+from tswift import Song
+from telegram.error import BadRequest
+
+import SaitamaRobot.modules.shayari_strings as fun_strings
 from SaitamaRobot import dispatcher
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler
+from SaitamaRobot.modules.helper_funcs.alternate import send_message, typing_action
+from SaitamaRobot.modules.helper_funcs.chat_status import (is_user_admin)
+from SaitamaRobot.modules.helper_funcs.extraction import extract_user
 
 SHAYARI_STRINGS = (
   "Har Tanha Raat Mein Ek Naam Yaad Aata Hai Kabhi Subhah To Kabhi Shaam Yaad Aata Hai,Jab Sochte Hain Kar Lein Dobara Mohabbat,Fir Pehli Mohabbat Ka Anzaam Yaad Aata Hai.",
