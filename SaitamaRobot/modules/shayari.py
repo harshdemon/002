@@ -16,14 +16,15 @@ from SaitamaRobot.modules.helper_funcs.alternate import send_message, typing_act
 from SaitamaRobot.modules.helper_funcs.chat_status import (is_user_admin)
 from SaitamaRobot.modules.helper_funcs.extraction import extract_user
 
-@run_async
-def shayari(bot: Bot, update: Update):
-    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
-    message = update.effective_message
-    if message.reply_to_message:
-      message.reply_to_message.reply_text(random.choice(SHAYARI_STRINGS))
-    else:
-      message.reply_text(random.choice(SHAYARI_STRINGS))
+@typing_action
+def shayari(update, context):
+    # reply to correct message
+    reply_text = (
+        update.effective_message.reply_to_message.reply_text
+        if update.effective_message.reply_to_message
+        else update.effective_message.reply_text
+    )
+    reply_text(random.choice(fun.SHAYARI_STRINGS))
 
 
 SHAYARI_HANDLER = DisableAbleCommandHandler("shayari", shayari)
