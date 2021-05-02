@@ -18,4 +18,12 @@ SHAYARI = (
   "Mere Dushman Bhi Mere Mureed Hain Shayad,Waqt-BeWaqt Mera Naam Liya Karte Hain,Meri Gali Se Gujarte Hain Chhupa Ke Khanzar,Ru-Ba-Ru Hone Par Salaam Kiya Karte Hain.",
   "Meri Takdeer Mein Jalna Hai To Jal Jaunga,Main Koi Tera Vada To Nahi Jo Badal Jaunga,MujhKo Na Samjhaao Meri Zindagi Ke Usool,Main Khud Hi Thhokar Kha Ke Sambhal Jaunga.",
   "Tera Pyar Paane Ke LiyeMaine Kitna Intezar Kiya,Aur Uss Intezar Mein Na Jaane,Kitno Se Pyar Kiya.",
+  "Kal tak sirf ek ajnabee the tum,aaj dil ki ek ek dhadkan par hukumat hai tumhari…",
+  "Har kadam Har pal saath hai, Dur hokar bhi hum aapke pass hai,Aapko ho na ho par hume aapki kasam, Aapki kami ka har pal ehsaas hai.",
+  "Unke didar ke liye tadpata hai unke intejaar me dil tarsta hai Kya khein iss kambkhat dil ko apna ho kar kisi aur ke liye dadkta hai",
+  "Bhula ke mujhko agar tum bhi ho salamat, To bhula k tujko smbhalna muje b aata hai Nahi hain meri fitrat mein ye aadat warna, Teri tarah badalna mujhe bhi aata hain",
+  "Meri Mohabbat pe AITBAR to KIYA hota ae JAAN kisi AUR ke HONE se pehle MERA intezar to kiya hota",
+  "Deewana hun tera, mujhe inkaar nahi, kaise keh dun ki mujhe tumse pyar nahi, Kuch shararat to teri nazro mein bhi thi, Main akela hi to iska gunehgar nahi…",
+  "Kisi Ko Batane Se Mere Ashq Ruk Na Payenge, Mit Jayegi Zindagi Magar Gham Dhul Na Payenge.",
 )
+
