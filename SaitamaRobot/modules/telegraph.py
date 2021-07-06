@@ -1,57 +1,49 @@
+from SaitamaRobot.events import register
+from SaitamaRobot import telethn as tbot
+TMP_DOWNLOAD_DIRECTORY = "tg-File/"
 from telethon import events
 import os
 from PIL import Image
 from datetime import datetime
 from telegraph import Telegraph, upload_file, exceptions
-from SaitamaRobot.utils import admin_cmd
-from SaitamaRobot import CMD_HELP
-
+babe = "SaitamaRobot"
 telegraph = Telegraph()
-r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
+r = telegraph.create_account(short_name=babe)
 auth_url = r["auth_url"]
 
 
-@borg.on(admin_cmd("t(m|t) ?(.*)"))
+@register(pattern="^/t(m|t) ?(.*)")
 async def _(event):
     if event.fwd_from:
         return
-    if Config.PRIVATE_GROUP_BOT_API_ID is None:
-        await event.edit("Please set the required environment variable `PRIVATE_GROUP_BOT_API_ID` for this plugin to work")
-        return
-    if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
-    await borg.send_message(
-        Config.PRIVATE_GROUP_BOT_API_ID,
-        "Created New Telegraph account {} for the current session. \n**Do not give this url to anyone, even if they say they are from Telegram!**".format(auth_url)
-    )
     optional_title = event.pattern_match.group(2)
     if event.reply_to_msg_id:
         start = datetime.now()
         r_message = await event.get_reply_message()
         input_str = event.pattern_match.group(1)
         if input_str == "m":
-            downloaded_file_name = await borg.download_media(
+            downloaded_file_name = await tbot.download_media(
                 r_message,
-                Config.TMP_DOWNLOAD_DIRECTORY
+                TMP_DOWNLOAD_DIRECTORY
             )
             end = datetime.now()
             ms = (end - start).seconds
-            await event.edit("Downloaded to {} in {} seconds.".format(downloaded_file_name, ms))
+            h = await event.reply("Downloaded to {} in {} seconds.".format(downloaded_file_name, ms))
             if downloaded_file_name.endswith((".webp")):
                 resize_image(downloaded_file_name)
             try:
                 start = datetime.now()
                 media_urls = upload_file(downloaded_file_name)
             except exceptions.TelegraphException as exc:
-                await event.edit("ERROR: " + str(exc))
+                await h.edit("ERROR: " + str(exc))
                 os.remove(downloaded_file_name)
             else:
                 end = datetime.now()
                 ms_two = (end - start).seconds
                 os.remove(downloaded_file_name)
-                await event.edit("Uploaded to https://telegra.ph{} in {} seconds.".format(media_urls[0], (ms + ms_two)), link_preview=True)
+                await h.edit("Uploaded to https://telegra.ph{} in {} seconds.".format(media_urls[0], (ms + ms_two)), link_preview=True)
         elif input_str == "t":
-            user_object = await borg.get_entity(r_message.sender_id)
+            user_object = await tbot.get_entity(r_message.sender_id)
             title_of_page = user_object.first_name # + " " + user_object.last_name
             # apparently, all Users do not have last_name field
             if optional_title:
@@ -60,9 +52,9 @@ async def _(event):
             if r_message.media:
                 if page_content != "":
                     title_of_page = page_content
-                downloaded_file_name = await borg.download_media(
+                downloaded_file_name = await tbot.download_media(
                     r_message,
-                    Config.TMP_DOWNLOAD_DIRECTORY
+                    TMP_DOWNLOAD_DIRECTORY
                 )
                 m_list = None
                 with open(downloaded_file_name, "rb") as fd:
@@ -77,19 +69,22 @@ async def _(event):
             )
             end = datetime.now()
             ms = (end - start).seconds
-            await event.edit("Pasted to https://telegra.ph/{} in {} seconds.".format(response["path"], ms), link_preview=True)
+            await event.reply("Pasted to https://telegra.ph/{} in {} seconds.".format(response["path"], ms), link_preview=True)
     else:
-        await event.edit("Reply to a message to get a permanent telegra.ph link. (Okay)")
+        await event.reply("Reply to a message to get a permanent telegra.ph link.")
 
 
 def resize_image(image):
     im = Image.open(image)
     im.save(image, "PNG")
 
-    
-CMD_HELP.update(
-    {
-        "telegraph": ".t(m/t)"
-        "\nUsage .tm Give Telegraph Link of media nd .tt telegraph link of text ."
-    }
-)
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /tm : Get Telegraph Link Of Replied Media
+ - /tt: Get Telegraph Link of Replied Text
+"""
+
+__mod_name__ = "Telegraph"
