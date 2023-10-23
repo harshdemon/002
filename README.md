@@ -16,4 +16,4 @@
 Feel free to open pull requests should any be missing.
 
 
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/majid-nex/002.git)
+  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/harshdemon/002)
